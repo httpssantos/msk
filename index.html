@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de OS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0e0d0d;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 17px; /* Reduzido o tamanho do título */
+        }
+        .form-group {
+            margin-bottom: 4px;
+        }
+        label {
+            font-weight: bold;
+            color: #070707;
+            display: block;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 4px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        select {
+            cursor: pointer;
+        }
+        textarea {
+            height: 20px;
+        }
+        button {
+            background-color: #0c7ae0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3389eb;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .copy-btn {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Gerador de OS</h1>
+
+    <!-- Formulário de entrada -->
+    <div class="form-group">
+        <label for="titulo">Título</label>
+        <select id="titulo">
+            <option value="Atenuação">Atenuação</option>
+            <option value="Rompimento">Rompimento</option>
+            <option value="Visita técnica">Visita técnica</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="idOs">ID OS</label>
+        <input type="text" id="idOs" required>
+    </div>
+
+    <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <input type="text" id="cliente" required>
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" id="descricao" required>
+    </div>
+
+    <div class="form-group">
+        <label for="periodo">Período</label>
+        <select id="periodo">
+            <option value="Manhã">Manhã</option>
+            <option value="Tarde">Tarde</option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="data">Data</label>
+        <input type="text" id="data" required>
+    </div>
+
+    <div class="form-group">
+        <label for="obs">Observação</label>
+        <textarea id="obs"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" required>
+    </div>
+
+    <button onclick="gerarScript()">Gerar Script</button>
+
+    <!-- Exibição do resultado -->
+    <div class="output" id="output"></div>
+    <!-- Botão de copiar -->
+    <button class="copy-btn" id="copyButton" onclick="copiarScript()" style="display:none;">Copiar Script</button>
+</div>
+
+<script>
+    function gerarScript() {
+        // Coletando os dados do formulário
+        const titulo = document.getElementById('titulo').value;
+        const idOs = document.getElementById('idOs').value;
+        const cliente = document.getElementById('cliente').value;
+        const descricao = document.getElementById('descricao').value;
+        const periodo = document.getElementById('periodo').value;
+        const data = document.getElementById('data').value;
+        const obs = document.getElementById('obs').value;
+        const endereco = document.getElementById('endereco').value;
+
+        // Gerando o script
+        const script = `*${titulo}*
+ID OS: ${idOs}
+CLIENTE: ${cliente}
+DESCRIÇÃO: ${descricao}
+PERÍODO: ${periodo}
+DATA: ${data}
+OBS: ${obs}
+ENDEREÇO: ${endereco}
+#PEDRO`;
+
+        // Exibindo o script na tela
+        document.getElementById('output').textContent = script;
+
+        // Exibindo o botão de copiar
+        document.getElementById('copyButton').style.display = 'inline-block';
+    }
+
+    function copiarScript() {
+        // Pegando o conteúdo do campo de saída
+        const outputText = document.getElementById('output').textContent;
+
+        // Usando a API de Clipboard para copiar
+        navigator.clipboard.writeText(outputText).then(function() {
+            alert('Script copiado para a área de transferência!');
+        }).catch(function(error) {
+            alert('Falha ao copiar: ' + error);
+        });
+    }
+</script>
+
+</body>
+</html>
