@@ -181,7 +181,7 @@
         if (idOs.trim() === "") {
             // Modelo de saída sem o ID OS
             script = `-------------------------------------------
-ABERTURA OS DE: ${titulo}
+${titulo}
 CLIENTE: ${cliente}
 DESCRIÇÃO: 
 ${descricao}
@@ -193,7 +193,7 @@ ENDEREÇO: ${endereco}
 -------------------------------------------`;
         } else {
             // Modelo de saída com o ID OS
-            script = `TÍTULO: ${titulo}
+            script =`${titulo}
 ID OS: ${idOs}
 CLIENTE: ${cliente}
 DESCRIÇÃO: ${descricao}
