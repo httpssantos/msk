@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Estilo do flatpickr -->
     <title>Gerador de OS</title>
     <style>
         body {
@@ -132,7 +133,7 @@
 
     <div class="form-group">
         <label for="data">Data</label>
-        <input type="text" id="data" required>
+        <input type="date" id="data" required>
     </div>
 
     <div class="form-group">
@@ -153,7 +154,16 @@
     <button class="copy-btn" id="copyButton" onclick="copiarScript()" style="display:none;">Copiar Script</button>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!-- Script do flatpickr -->
 <script>
+    // Inicializando o flatpickr
+    flatpickr("#data", {
+        locale: "pt",  // Configura o calendário para o português (Brasil)
+        dateFormat: "d/m",  // Formato de data (dd/mm) sem o ano
+        altInput: true,  // Usar o input alternativo para visualização
+        altFormat: "d/m",  // Formato de exibição alternativo (dd/mm)
+        theme: "light"  // Tema claro do flatpickr
+    });
     function gerarScript() {
         // Coletando os dados do formulário
         const titulo = document.getElementById('titulo').value;
@@ -165,8 +175,25 @@
         const obs = document.getElementById('obs').value;
         const endereco = document.getElementById('endereco').value;
 
-        // Gerando o script
-        const script = `*${titulo}*
+
+        let script = "";
+
+        if (idOs.trim() === "") {
+            // Modelo de saída sem o ID OS
+            script = `-------------------------------------------
+ABERTURA OS DE: ${titulo}
+CLIENTE: ${cliente}
+DESCRIÇÃO: 
+${descricao}
+PERÍODO: ${periodo}
+DATA: ${data}
+OBS: ${obs}
+CONTATO: 
+ENDEREÇO: ${endereco}
+-------------------------------------------`;
+        } else {
+            // Modelo de saída com o ID OS
+            script = `TÍTULO: ${titulo}
 ID OS: ${idOs}
 CLIENTE: ${cliente}
 DESCRIÇÃO: ${descricao}
@@ -174,8 +201,9 @@ PERÍODO: ${periodo}
 DATA: ${data}
 OBS: ${obs}
 ENDEREÇO: ${endereco}
-#PEDRO`;
-
+`;
+        }
+        
         // Exibindo o script na tela
         document.getElementById('output').textContent = script;
 
