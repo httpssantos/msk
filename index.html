@@ -27,10 +27,10 @@
         h1 {
             text-align: center;
             color: #333;
-            font-size: 17px; /* Reduzido o tamanho do título */
+            font-size: 24px; /* Reduzido o tamanho do título */
         }
         .form-group {
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
         label {
             font-weight: bold;
@@ -52,7 +52,7 @@
         }
         button {
             background-color: #0c7ae0;
-            color: white;
+            color: rgb(237, 246, 248);
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
@@ -137,7 +137,7 @@
 
     <div class="form-group">
         <label for="obs">Observação</label>
-        <textarea id="obs"></textarea>
+        <input type="text" id="obs" required>
     </div>
 
     <div class="form-group">
@@ -189,7 +189,6 @@ ENDEREÇO: ${endereco}
 
         // Usando a API de Clipboard para copiar
         navigator.clipboard.writeText(outputText).then(function() {
-            alert('Script copiado para a área de transferência!');
         }).catch(function(error) {
             alert('Falha ao copiar: ' + error);
         });
