@@ -239,7 +239,21 @@ ATENDENTE: ${atendente}`;
     function copiarScript() {
         const outputText = document.getElementById('output').textContent;
         navigator.clipboard.writeText(outputText).then(() => {
-            alert("Script copiado!");
+            // Exibe o alerta com estilo personalizado
+            const alerta = document.createElement("div");
+            alerta.style.cssText = "display: block; position: fixed; top: 0; left: 20%; right: 20%; width: 60%; padding-top: 10px; z-index: 9999";
+            
+            const alertaInner = document.createElement("div");
+            alertaInner.style.cssText = "margin: 0 auto; box-shadow: 1px 1px 5px black; padding: 10px; background-color: #007bff; color: white; text-align: center; font-size: 14px; border-radius: 4px;";
+            alertaInner.textContent = "Máscara copiada!";
+            
+            alerta.appendChild(alertaInner);
+            document.body.appendChild(alerta);
+
+            // Remove o alerta após 1 segundo
+            setTimeout(() => {
+                alerta.remove();
+            }, 1100);
         }).catch(error => {
             alert('Falha ao copiar: ' + error);
         });
