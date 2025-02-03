@@ -204,6 +204,7 @@
         const periodo = document.getElementById('periodo').value;
         const data = document.getElementById('data').value;
         const obs = document.getElementById('obs').value;
+        const telefone = document.getElementById('telefone').value;
         const endereco = document.getElementById('endereco').value;
         const atendente = document.getElementById('atendente').value;
         let script = idOs.trim() === "" ?
@@ -216,6 +217,7 @@ DATA: ${data}
 OBS: ${obs}
 ENDEREÇO: ${endereco}
 ATENDENTE: ${atendente}
+TELEFONE: ${telefone}
 -------------------------------------------` :
             `*${titulo}*
 ID OS: ${idOs}
@@ -226,6 +228,7 @@ DATA: ${data}
 OBS: ${obs}
 ENDEREÇO: ${endereco}
 ATENDENTE: ${atendente}`;
+
         
         document.getElementById('output').textContent = script;
         document.getElementById('copyButton').style.display = 'inline-block';
@@ -260,6 +263,7 @@ ATENDENTE: ${atendente}`;
         document.getElementById('data').value = '';
         document.getElementById('obs').value = '';
         document.getElementById('endereco').value = '';
+        document.getElementById('telefone').value = '';
         document.getElementById('atendente').value = '';
         document.getElementById('output').textContent = '';
         document.getElementById('copyButton').style.display = 'none';
