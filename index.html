@@ -203,6 +203,11 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+
+    // Verifica se o usuário está autenticado
+    if (!localStorage.getItem("authToken")) {
+        window.location.href = "https://geradordeosapp.vercel.app/"; // Redireciona para a tela de login
+    }
     flatpickr("#data", {
         locale: "pt",
         dateFormat: "d/m",
